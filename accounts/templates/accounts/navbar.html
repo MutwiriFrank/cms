@@ -1,0 +1,63 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <img  src="{% static 'images/corn2.png'%} " alt="" height="50" width="120">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      {% if request.user.is_staff %}
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Dashboard <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'products' %}">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'customer' 1 %}">Customers</a>
+        </li>
+      {% endif %}
+      </ul>
+
+      <!--<li class="nav-item">-->
+        <!--<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+    <!--<form class="form-inline my-2 my-lg-0">-->
+      <!--<input class="form-control mr-sm-2" type="search" placeholder="Search">-->
+      <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+    <!--</form>-->
+      <ul class=" navbar-nav mr-4 mt-2 mt-lg-0">
+
+
+        <li class="nav-item-right">
+            <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+        </li>
+        <li class="nav-item-right">
+
+          <div class="dropdown show mr-4">
+            <a style="color:white" class="btn  dropdown-toggle" role="button" id="dropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user}}
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              {% if request.user.is_staff %}
+
+              {% else %}
+              <a class="dropdown-item" href="{% url 'profile' %}">profile Settings</a>
+              {% endif %}
+              <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+
+            </div>
+          </div>
+
+
+        </li>
+      </ul>
+
+
+  </div>
+</nav>
